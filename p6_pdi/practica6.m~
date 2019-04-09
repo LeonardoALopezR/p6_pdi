@@ -23,27 +23,25 @@ matriz1 = unos1 .* 255;
 imC=conv2(ima,matriz1);
 subplot(2,2,2),imshow(imC,[]),title('Localizacion de la letra');
 
-% Correlaci?n de las imagenes
+
 corrImg2=xcorr2(im2,imday);
-subplot(2,2,3),imshow(corrImg2,[]),title('Imagen texto "2" y "day" correlacionadas');
+subplot(2,2,3)
+imshow(corrImg2,[]);
 
-%obtenemos los valores maximos de la correlacion y para una mejor ubicacion
-%utilizamos los ultimos 3 valores
-max2=max(corrImg2);
-max2= sort(max2);
-[maxX,maxY]=size(max2);
-unos2 = ismember(corrImg2,max2(maxY));
-unos3 = ismember(corrImg2,max2(maxY-1));
-unos4 = ismember(corrImg2,max2(maxY-2));
+maximo2=max(corrImg2);
+maximo2= sort(maximo2);
+c2 = ismember(corrImg2,35631109);
+c3 = ismember(corrImg2,34536979);
+c4 = ismember(corrImg2,34092010);
  
-matriz2 = unos2 .* 255;
-matriz3 = unos3 .* 255;
-matriz4 = unos4 .* 255;
+matriz1 = c2 .* 255;
+matriz2 = c3 .* 255;
+matriz3 = c4 .* 255;
 
-%al final se suman los valores para obtener la matriz con la localizacion
-matriztotal= matriz2+matriz3+matriz4;
+matriztotal= matriz1+matriz2+matriz3;
 imC2=conv2(imday,matriztotal);
-subplot(2,2,4),imshow(imC2,[]),title('Localizacion de la palabra');
+subplot(2,2,4)
+imshow(imC2,[])
 
 %Lo que hace es "colocar" un punto donde la correlaci?n tiene mayor valor. 
 %Las dificultades del OCR m?s notorias son: la cantidad de procesamiento 
